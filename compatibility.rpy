@@ -37,6 +37,8 @@ init:
         def delete_mod(name):
             import os
             persistent.mod_updater["STATUS"] = "DELETING"
+            if not os.path.exists(name):
+                return
             for obj in os.listdir(name):
                 obj = os.path.join(name, obj)
                 if os.path.isfile(obj):
@@ -86,6 +88,7 @@ init:
                     url = "https://github.com/Vernulsi/%s/archive/refs/heads/main.zip" % mod
                     file_name = download_mod(url)
                     extract_mod(file_name, mod)
+            persistent.mod_updater["DOWNLOADING_MOD"] = ''
             persistent.mod_updater["STATUS"] = "FINISH"
             return
 
