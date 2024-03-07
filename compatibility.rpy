@@ -79,7 +79,7 @@ init:
             import time
             persistent.mod_updater["DOWNLOADING_MOD"] = ''
             time.sleep(0.5)
-            mods = []
+            mods = persistent.mod_updater["TOGGLE_MODS"]
             for mod, value in mods.items():
                 if value:
                     persistent.mod_updater["DOWNLOADING_MOD"] = mod
