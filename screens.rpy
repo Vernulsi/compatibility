@@ -322,7 +322,6 @@ screen mod_news:
             spacing 100
             textbutton _("Выход") action Hide("mod_news") xalign 0
             textbutton _("OK") action [Hide("mod_news"), Function(renpy.invoke_in_thread, start_install), Show("download_screen")] xalign 1
-    on "show" action Function(check_update)
 
 screen preferences():
     tag menu
@@ -400,6 +399,7 @@ screen preferences():
                         textbutton _("Отключить Всё"):
                             action Preference("all mute", "toggle")
                             style "mute_all_button"
-        textbutton _("Обновление модификаций"):
-            align (0.0, 0.0)
-            action Show("mod_news")
+        if main_menu:
+            textbutton _("Обновление модификаций"):
+                align (0.0, 0.0)
+                action [Function(check_update), Show("mod_news")]
