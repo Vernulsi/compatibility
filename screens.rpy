@@ -274,7 +274,8 @@ screen download_screen(ok_action=[Function(renpy.set_autoreload, True), Function
         "FINISH":"Готово",
         "...":"...",
         "REPLACE":"Перенос папок",
-        "START":"Старт"
+        "START":"Старт",
+        "ERROR": "Упс, возникла ошибка, попробуй снова"
     }
     frame:
         background Frame([ "gui/confirm_frame.png", "gui/frame.png"], gui.confirm_frame_borders, tile=gui.frame_tile)
@@ -321,7 +322,7 @@ screen mod_news:
         hbox:
             spacing 100
             textbutton _("Выход") action Hide("mod_news") xalign 0
-            textbutton _("OK") action [Hide("mod_news"), Function(renpy.invoke_in_thread, start_install), Show("download_screen")] xalign 1
+            textbutton _("OK") action [Hide("mod_news"), md.StartInstall()] xalign 1
 
 screen preferences():
     tag menu
@@ -402,4 +403,4 @@ screen preferences():
         if main_menu:
             textbutton _("Обновление модификаций"):
                 align (0.0, 0.0)
-                action [Function(check_update), Show("mod_news")]
+                action [md.CheckUpdate(), Show("mod_news")]
