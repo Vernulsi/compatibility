@@ -12,7 +12,7 @@ init python:
         def __call__(self):
             return self.downloader.thread()
     class ModDownloader(object):
-        import requests
+        from requests import Session as reqses
         import json
         import os
         import zipfile
@@ -21,7 +21,7 @@ init python:
 
         url_json = "https://raw.githubusercontent.com/Vernulsi/compatibility/main/mods_versions.json"
 
-        session = requests.Session()
+        session = reqses()
         session.headers.update({"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Вин64; x64) AppleWebKit/537.36 (KHTML, как Gecko) Chrome/109.0.0.0 Safari/537.36"})
 
         if not renpy.android:
